@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'books/base.html'%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h5> {{book.title}} </h5>
+    <p><strong>Author:</strong>
+    {{book.author}}</p>
+    <p><strong>Pages:</strong>
+    {{book.pages}}</p>
+    <p><strong>Published Year:</strong>
+    {{book.published_year}}</p>
+
+   
+    <a href = "{% url 'book_update' book.pk %}" class="btn btn-warning btn-sm">Edit</a>   
+    <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger btn-sm">Delete</a>
+    <a href = "{% url 'book_list' %}" class ="btn btn-secondary">Back to List</a>
+    <h3>Reviews<h3>
+        {% for review in reviews %}
+        <div class = "border p-2 mb-2">
+            <strong>{{ review.user.username }}</strong>
+
+            {{ review.rating }}/5 <br>
+            {{ review.comment }}<br>
+            <small> {{ review.created_at }}</small>
+        </div>
+        {% empty %}
+        <p>Now reviews yet.</p>
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_review' book.pk %}">Add your review</a>
+        <h4>Add / Update your review</h4>
+        {% comment %} <form method ="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+        </form> {% endcomment %}
+        {% else %}
+        <p><a href = "{% url 'login' %}">Login</a> to add a review.</p>
+        {%  endif %}
+
+    {% endblock %}
+    
+</body>
+</html>
