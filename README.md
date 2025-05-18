@@ -37,7 +37,7 @@ A simple Django-based web application that allows users to manage and explore a 
    cd Simple-Django-Bookstore-Project
    
 2. Create a virtual environment
-python -m venv env
+"python -m venv env"
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 Install dependencies
 
@@ -45,20 +45,21 @@ Install dependencies
 pip install -r requirements.txt
 
 4. Apply migrations
-python manage.py makemigrations
-python manage.py migrate
+"python manage.py makemigrations"
+"python manage.py migrate"
 
 5. Create a superuser
-python manage.py createsuperuser
+"python manage.py createsuperuser"
 
 
 6. Run the development server
-python manage.py runserver
+"python manage.py runserver"
 Visit the site
 Open your browser and go to:
 http://127.0.0.1:8000/
 
 Project Status
+
 This project is complete as a practice/demo project and can be extended further with:
 Comments and Reviews
 Categories or genres
